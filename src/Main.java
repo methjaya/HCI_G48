@@ -68,7 +68,7 @@ public class Main {
                     // Close the current window
                     f.dispose();
                     // Open the home page window
-                    new Logout();
+                    new Profile();
                 }
             });
 

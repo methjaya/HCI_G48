@@ -82,7 +82,9 @@ public class Logout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-
+                    f.dispose();
+                    // Open the home page window
+                    new Profile();
                 } catch (Exception err) {
 //                        output.setText("Error");
                 }
