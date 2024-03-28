@@ -57,23 +57,6 @@ public class Main {
             lb2= new JLabel("Password");
             lb2.setBounds(135,275,100,30);
 
-//            //Output
-//            JLabel output;
-//            output= new JLabel("Answer");
-//            output.setBounds(210,325,100,30);
-
-            panel.addMouseListener(new MouseListener() {
-                public void mousePressed(MouseEvent me) { }
-                public void mouseReleased(MouseEvent me) { }
-                public void mouseEntered(MouseEvent me) { }
-                public void mouseExited(MouseEvent me) { }
-                public void mouseClicked(MouseEvent me) {
-                    int x = me.getX();
-                    int y = me.getY();
-                    tfx.setText("X:" + x + " Y:" + y);
-                }
-            });
-
             //Button 1
             JButton b = new JButton("Login");
             b.setBounds(190,385,140,40);
@@ -82,22 +65,16 @@ public class Main {
             b.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    try{
-                        int n1 = Integer.parseInt(tfx.getText());
-                        int n2 =  Integer.parseInt(tf2.getText());
-
-//                        output.setText(Integer.toString (n1+n2));
-
-                    }catch(Exception err){
-//                        output.setText("Error");
-                    }
-
+                    // Close the current window
+                    f.dispose();
+                    // Open the home page window
+                    new Logout();
                 }
             });
+
             panel.add(title);
             panel.add(lb);
             panel.add(lb2);
-//            panel.add(output);
             panel.add(tfx);
             panel.add(tf2);
             panel.add(b);
@@ -107,6 +84,8 @@ public class Main {
             f.setVisible(true);
         }
     }
+
+}
 
 
 
@@ -191,4 +170,4 @@ public class Main {
 //
 //        }
 //    }
-}
+//}
