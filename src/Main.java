@@ -1,151 +1,194 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import com.jogamp.opengl.*;
-import com.jogamp.opengl.awt.GLCanvas;
-import javax.swing.JFrame;
-
-import com.jogamp.opengl.util.FPSAnimator;
-
-public class Main implements GLEventListener {
-   static private float rpoly;
-    static  private float cameraX = 0.0f;
-    static private float cameraY = 0.0f;
-    static private float cameraZ = -1f;
-    static  private float cameraSpeed = 0.1f;
-
-
-
-    @Override
-    public void display( GLAutoDrawable drawable ) {
-
-        final GL2 gl = drawable.getGL().getGL2();
-        gl.glColor3f(1f,0f,0f); //applying red
-
-        // Clear The Screen And The Depth Buffer
-        gl.glClear( GL2.GL_COLOR_BUFFER_BIT |
-                GL2.GL_DEPTH_BUFFER_BIT );
-        gl.glLoadIdentity();
-
-        gl.glTranslatef(cameraX, cameraY, cameraZ);
-
-        gl.glBegin(GL2.GL_QUADS);
-        gl.glVertex3f(-0.08f, -0.09f, 0);
-        gl.glVertex3f(-0.08f, 0.16f, 0);
-        gl.glVertex3f(-0.06f, 0.16f, 0);
-        gl.glVertex3f(-0.06f, -0.09f, 0);
-        gl.glEnd();
-
-        gl.glBegin(GL2.GL_QUADS);
-        gl.glVertex3f(0.14f, -0.09f, 0);
-        gl.glVertex3f(0.16f, -0.09f, 0);
-        gl.glVertex3f(0.14f, 0.16f, 0);
-        gl.glVertex3f(0.16f, 0.16f, 0);
-        gl.glEnd();
-
-        gl.glBegin(GL2.GL_QUADS);
-        gl.glVertex3f(-0.08f, -0.16f, 0);
-        gl.glVertex3f(-0.24f, -0.25f, 0);
-        gl.glVertex3f(0.17f, -0.16f, 0);
-        gl.glVertex3f(0.06f, -0.27f, 0);
-        gl.glEnd();
-
-        gl.glFlush();
-//
-//        rpoly += 0.2f;  //assigning the angle
-//
-//        gl.glEnable( GL2.GL_LIGHTING );
-//        gl.glEnable( GL2.GL_LIGHT0 );
-//        gl.glEnable( GL2.GL_NORMALIZE );
-//
-//        // weak RED ambient
-//        float[] ambientLight = { 0.1f, 0.f, 0.f,0f };
-//        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, ambientLight, 0);
-//
-//        // multicolor diffuse
-//        float[] diffuseLight = { 1f,2f,1f,0.2f };
-//        gl.glLightfv( GL2.GL_LIGHT0, GL2.GL_DIFFUSE, diffuseLight, 0 );
-    }
-
-    @Override
-    public void dispose( GLAutoDrawable arg0 ) {
-        //method body
-    }
-
-    @Override
-    public void init( GLAutoDrawable arg0 ) {
-        // method body
-
-    }
-
-    @Override
-    public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) {
-        // method body
-    }
-
+public class Main {
     public static void main(String[] args) {
+        new Activity();
+    }
 
-        //getting the capabilities object of GL2 profile
-        final GLProfile profile = GLProfile.get( GLProfile.GL2 );
-        GLCapabilities capabilities = new GLCapabilities( profile);
+    public static class Activity{
+        JFrame f;
+        Activity(){
 
-        // The canvas
-        final GLCanvas glcanvas = new GLCanvas( capabilities );
-        Main main = new Main();
-        glcanvas.addGLEventListener( main );
-        glcanvas.addKeyListener(new java.awt.event.KeyListener() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent e) {
+            f=new JFrame();
+            f.setSize(900,600);
 
-            }
+            //LEFT PANEL
+            JPanel panelLeft = new JPanel();
+            panelLeft.setBounds(0,0,400,600);
+            panelLeft.setBackground(new Color(54,48,98));
+            panelLeft.setLayout(null);
 
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case com.jogamp.newt.event.KeyEvent.VK_W:
-                        cameraZ += cameraSpeed;
-                        System.out.println(cameraZ);
-                        break;
+            //Right PANEL
+            JPanel panel = new JPanel();
+            panel.setBackground(Color.white);
+            panel.setBounds(385,0,500,600);
+            panel.setLayout(null);
 
-                    case com.jogamp.newt.event.KeyEvent.VK_S:
-                        cameraZ -= cameraSpeed;
-                        System.out.println(cameraZ);
-                        break;
-                    case com.jogamp.newt.event.KeyEvent.VK_A:
-                        cameraX -= cameraSpeed;
-                        System.out.println(cameraX);
-                        break;
-                    case com.jogamp.newt.event.KeyEvent.VK_D:
-                        cameraX += cameraSpeed;
-                        System.out.println(cameraX);
-                        break;
+
+            //TextField 1
+            final JTextField  tfx = new JTextField();
+            tfx.setBounds(135,220,270,40);
+
+            //TextField 2
+            final JTextField  tf2 = new JTextField();
+            tf2.setBounds(135,315,270,40);
+
+            JLabel title;
+            title= new JLabel("LOGIN TO YOUR ACCOUNT");
+            Font currentFont = title.getFont();
+            Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.5f); // increase by 1.5 times
+            // Set the new font to the JLabel
+            title.setFont(newFont);
+            title.setForeground(new Color(27,26,85));
+            title.setBounds(152,125,250,30);
+
+            //Label 1
+            JLabel lb;
+            lb= new JLabel("Email");
+            lb.setBounds(135,180,100,30);
+
+            //Label 2
+            JLabel lb2;
+            lb2= new JLabel("Password");
+            lb2.setBounds(135,275,100,30);
+
+//            //Output
+//            JLabel output;
+//            output= new JLabel("Answer");
+//            output.setBounds(210,325,100,30);
+
+            panel.addMouseListener(new MouseListener() {
+                public void mousePressed(MouseEvent me) { }
+                public void mouseReleased(MouseEvent me) { }
+                public void mouseEntered(MouseEvent me) { }
+                public void mouseExited(MouseEvent me) { }
+                public void mouseClicked(MouseEvent me) {
+                    int x = me.getX();
+                    int y = me.getY();
+                    tfx.setText("X:" + x + " Y:" + y);
                 }
-            }
+            });
 
-            @Override
-            public void keyReleased(java.awt.event.KeyEvent e) {
+            //Button 1
+            JButton b = new JButton("Login");
+            b.setBounds(190,385,140,40);
+            b.setBackground(new Color(51,58,115));
+            b.setForeground(Color.white);
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try{
+                        int n1 = Integer.parseInt(tfx.getText());
+                        int n2 =  Integer.parseInt(tf2.getText());
 
-            }
+//                        output.setText(Integer.toString (n1+n2));
 
-        });
+                    }catch(Exception err){
+//                        output.setText("Error");
+                    }
 
-        glcanvas.setSize( 800, 800 );
+                }
+            });
+            panel.add(title);
+            panel.add(lb);
+            panel.add(lb2);
+//            panel.add(output);
+            panel.add(tfx);
+            panel.add(tf2);
+            panel.add(b);
+            f.add(panelLeft);
+            f.add(panel);
+            f.setLayout(null);
+            f.setVisible(true);
+        }
+    }
 
-        //creating frame
-        final JFrame frame = new JFrame (" 3D View ");
-
-        //adding canvas to it
-        frame.getContentPane().add( glcanvas );
-        frame.setSize( frame.getContentPane().getPreferredSize());
-        frame.setVisible( true );
 
 
-        //Instantiating and Initiating Animator
-        final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true );
-        animator.start();
 
-    } //end of main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public static class Activity{
+//        JFrame f;
+//        Activity(){
+//            f=new JFrame();
+//            f.setSize(600,600);
+//
+//            //TextField 1
+//            final JTextField  tf = new JTextField();
+//            tf.setBounds(100,100,150,20);
+//
+//            //TextField 2
+//            final JTextField  tf2 = new JTextField();
+//            tf.setBounds(80,80,150,20);
+//
+//            //Button 1
+//            JButton b = new JButton("Click Here");
+//            b.setBounds(50,100,50,25);
+//            b.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    tf.setText("Welcome to the PUSL3122 Module");
+//                }
+//            });
+//
+//            //Button 2
+//            JButton b2 = new JButton("Click Here");
+//            b2.setBounds(200,100,50,25);
+//            b2.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    tf.setText("Welcome to the PUSL3122 Module");
+//                }
+//            });
+//
+//            //Label 1
+//            JLabel lb;
+//            lb= new JLabel("First lab session");
+//            lb.setBounds(100,150,100,30);
+//
+//            f.addMouseListener(new MouseListener() {
+//                public void mousePressed(MouseEvent me) { }
+//                public void mouseReleased(MouseEvent me) { }
+//                public void mouseEntered(MouseEvent me) { }
+//                public void mouseExited(MouseEvent me) { }
+//                public void mouseClicked(MouseEvent me) {
+//                    int x = me.getX();
+//                    int y = me.getY();
+//                    tf.setText("X:" + x + " Y:" + y);
+//                }
+//            });
+//            f.add(lb);
+//            f.add(tf);
+//            f.add(tf2);
+//            f.add(b);
+//            f.add(b2);
+//            f.setLayout(null);
+//            f.setVisible(true);
+//
+//
+//
+//        }
+//    }
 }
-
-
-
-
-
