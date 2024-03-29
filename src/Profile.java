@@ -28,66 +28,85 @@ public class Profile {
 // Set the new font to the JLabel
         title.setFont(newFont);
         title.setForeground(new Color(27, 26, 85));
-        title.setBounds(100, 25, 250, 30); // Adjusted y-coordinate
+        title.setBounds(80, 25, 250, 30); // Adjusted x-coordinate
 
 //First Name
         final JTextField tfx = new JTextField();
-        tfx.setBounds(100, 115, 270, 40); // Adjusted y-coordinate
+        tfx.setBounds(80, 115, 240, 40); // Adjusted x-coordinate
         JLabel lb;
         lb = new JLabel("First Name");
-        lb.setBounds(100, 75, 100, 30); // Adjusted y-coordinate
+        lb.setBounds(80, 75, 100, 30); // Adjusted x-coordinate
+
+//Last Name
+        final JTextField tfLn = new JTextField();
+        tfLn.setBounds(380, 115, 240, 40); // Adjusted x-coordinate
+        JLabel lbLn;
+        lbLn = new JLabel("Last Name");
+        lbLn.setBounds(380, 75, 100, 30); // Adjusted x-coordinate
 
 //Email
         final JTextField tf2 = new JTextField();
-        tf2.setBounds(100, 210, 270, 40); // Adjusted y-coordinate
+        tf2.setBounds(80, 210, 540, 40); // Adjusted x-coordinate
         JLabel lb2;
         lb2 = new JLabel("Email");
-        lb2.setBounds(100, 170, 100, 30); // Adjusted y-coordinate
+        lb2.setBounds(80, 170, 100, 30); // Adjusted x-coordinate
 
 //Address
         final JTextField tfAddress = new JTextField();
-        tfAddress.setBounds(100, 305, 270, 40); // Adjusted y-coordinate
+        tfAddress.setBounds(80, 305, 540, 40); // Adjusted x-coordinate
         JLabel lbAddress;
         lbAddress = new JLabel("Address");
-        lbAddress.setBounds(100, 265, 100, 30); // Adjusted y-coordinate
+        lbAddress.setBounds(80, 265, 100, 30); // Adjusted x-coordinate
 
 //Contact No
         final JTextField tfContactNo = new JTextField();
-        tfContactNo.setBounds(100, 400, 270, 40); // Adjusted y-coordinate
+        tfContactNo.setBounds(80, 400, 540, 40); // Adjusted x-coordinate
         JLabel lbContactNo;
         lbContactNo = new JLabel("Contact Number");
-        lbContactNo.setBounds(100, 360, 100, 30); // Adjusted y-coordinate
+        lbContactNo.setBounds(80, 360, 100, 30); // Adjusted x-coordinate
 
 //Districts
         JLabel lbDistricts;
-        lbDistricts = new JLabel("Districts");
-        lbDistricts.setBounds(100, 455, 100, 30); // Adjusted y-coordinate
+        lbDistricts = new JLabel("District");
+        lbDistricts.setBounds(80, 455, 100, 30); // Adjusted x-coordinate
         JComboBox<String> comboBox = new JComboBox<>();
         comboBox.addItem("Open");
         comboBox.addItem("Save");
         comboBox.addItem("Exit");
-        comboBox.setBounds(100, 495, 270, 30); // Adjusted y-coordinate
+        comboBox.setBounds(80, 495, 240, 30); // Adjusted x-coordinate
         comboBox.setBackground(Color.white);
 
 // Add action listener to the JComboBox
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Get the selected item
-                String selectedItem = (String) comboBox.getSelectedItem();
-                if (selectedItem.equals("Exit")) {
-                    System.exit(0); // Exit the application when "Exit" is selected
-                } else {
-                    // Perform other actions based on selected item
-                    // For demonstration, we'll print the selected item
-                    System.out.println("Selected: " + selectedItem);
-                }
+
             }
         });
 
+        //City
+        JLabel lbCity;
+        lbCity = new JLabel("City");
+        lbCity.setBounds(380, 455, 100, 30); // Adjusted x-coordinate
+        JComboBox<String> comboBoxCity = new JComboBox<>();
+        comboBoxCity.addItem("Open");
+        comboBoxCity.addItem("Save");
+        comboBoxCity.addItem("Exit");
+        comboBoxCity.setBounds(380, 495, 240, 30); // Adjusted x-coordinate
+        comboBoxCity.setBackground(Color.white);
+
+// Add action listener to the JComboBox
+        comboBoxCity.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
 //Save Details
         JButton b = new JButton("Save Details");
-        b.setBounds(100, 545, 140, 40); // Adjusted y-coordinate
+        b.setBounds(80, 545, 140, 40); // Adjusted x-coordinate
         b.setBackground(new Color(54, 174, 124));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
@@ -101,16 +120,23 @@ public class Profile {
             }
         });
 
-//Contact No
+//Old Password
         final JTextField tfPassword = new JTextField();
-        tfPassword.setBounds(100, 640, 270, 40); // Adjusted y-coordinate
+        tfPassword.setBounds(80, 640, 240, 40); // Adjusted x-coordinate
         JLabel lbPassword;
         lbPassword = new JLabel("Old Password");
-        lbPassword.setBounds(100, 600, 100, 30); // Adjusted y-coordinate
+        lbPassword.setBounds(80, 600, 100, 30); // Adjusted x-coordinate
 
-        //Save Password
+        //New Password
+        final JTextField tfNewPassword = new JTextField();
+        tfNewPassword.setBounds(380, 640, 240, 40); // Adjusted x-coordinate
+        JLabel lbNewPassword;
+        lbNewPassword = new JLabel("New Password");
+        lbNewPassword.setBounds(380, 600, 100, 30); // Adjusted x-coordinate
+
+//Save Password
         JButton btnSavePassword = new JButton("Save Password");
-        btnSavePassword.setBounds(100, 700, 140, 40); // Adjusted y-coordinate
+        btnSavePassword.setBounds(80, 700, 140, 40); // Adjusted x-coordinate
         btnSavePassword.setBackground(new Color(54, 174, 124));
         btnSavePassword.setForeground(Color.white);
         btnSavePassword.addActionListener(new ActionListener() {
@@ -141,6 +167,12 @@ public class Profile {
         panel.add(lbPassword);
         panel.add(tfPassword);
         panel.add(btnSavePassword);
+        panel.add(tfLn);
+        panel.add(lbLn);
+        panel.add(lbCity);
+        panel.add(comboBoxCity);
+        panel.add(lbNewPassword);
+        panel.add(tfNewPassword);
         f.add(panel);
         f.setLayout(null);
         f.setVisible(true);
