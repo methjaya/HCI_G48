@@ -116,7 +116,7 @@ public class Profile {
                 f.dispose();
                 // Open the home page window
 //                    new Logout();
-                new Profile();
+                new Room();
             }
         });
 
@@ -146,7 +146,7 @@ public class Profile {
                 f.dispose();
                 // Open the home page window
 //                    new Logout();
-                new Profile();
+                new Logout();
             }
         });
 
