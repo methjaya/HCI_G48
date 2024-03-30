@@ -43,5 +43,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="gluegen-rt-natives-windows-amd64" level="project" />
   </component>
 </module>

@@ -23,6 +23,13 @@ public class Main {
             panelLeft.setBackground(new Color(54,48,98));
             panelLeft.setLayout(null);
 
+            // Load and display image
+            ImageIcon imageIcon = new ImageIcon("assets/logo.png"); // Modify with your image path
+            JLabel imageLabel = new JLabel(imageIcon);
+            imageLabel.setBounds(70, 140, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+
+            panelLeft.add(imageLabel);
+
             //Right PANEL
             JPanel panel = new JPanel();
             panel.setBackground(Color.white);
