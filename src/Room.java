@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Room extends JFrame implements GLEventListener, KeyListener {
     private float posX = 0.0f;
     private float posY = 0.0f;
-    private float posZ = -44.0f; // Initial Z position
+    private float posZ = -1.0f; // Initial Z position
 
     private float angleX = 0.0f;
     private float angleY = 0.0f;
@@ -174,6 +174,8 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
 
         gl.glScalef(0.01f, 0.01f, 0.01f);
 
+        drawFloor(gl);
+
         for (int[] face : faces) {
             gl.glBegin(GL2.GL_POLYGON);
             for (int vertexIndex : face) {
@@ -185,6 +187,22 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
     }
 
 
+    private void drawFloor(GL2 gl) {
+        float floorSize = 20.0f; // Half-size of the floor, making the full floor 40x40 units
+        float floorHeight = -10f; // Height of the floor relative to the origin
+
+        // Floor color or material properties here (if lighting is enabled)
+//        gl.glColor3f(0.6f, 0.6f, 0.6f); // A simple gray color for the floor
+
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glColor3f(1f, 0f, 0f);
+        // Define the four corners of the floor quad
+        gl.glVertex3f(-floorSize, floorHeight, -floorSize);
+        gl.glVertex3f(-floorSize, floorHeight, floorSize);
+        gl.glVertex3f(floorSize, floorHeight, floorSize);
+        gl.glVertex3f(floorSize, floorHeight, -floorSize);
+        gl.glEnd();
+    }
 
 
     @Override
