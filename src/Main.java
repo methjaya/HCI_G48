@@ -75,9 +75,11 @@ public class Main {
                     // Close the current window
                     f.dispose();
                     // Open the home page window
-                    new Profile();
+//                    new Profile();
+                    new Room();
                 }
             });
+
 
             panel.add(title);
             panel.add(lb);
