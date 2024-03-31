@@ -137,8 +137,6 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
             case KeyEvent.VK_NUMPAD3: // Look further (increase Z)
                 camLookZ += 0.5f;
                 break;
-            // Optionally, controls for adjusting the camera's up vector, though typically not needed
-            // Example for tilting the camera to the side
             case KeyEvent.VK_NUMPAD7: // Tilt camera left
                 camUpX -= 0.1f;
                 break;
@@ -215,7 +213,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         getContentPane().add(canvas);
         setVisible(true);
 
-        // Load your .obj file
+        // Load obj
         loadObjModel("resources/Objects/chair.obj");
     }
     private void updateCameraLookDirection(int dx, int dy) {
@@ -239,9 +237,9 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
     private void loadObjModel(String filePath) {
         try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine().trim(); // Trim the line to remove leading/trailing whitespace
+                String line = scanner.nextLine().trim();
                 if (line.startsWith("v ")) {
-                    String[] coordinates = line.split("\\s+"); // Split by one or more whitespace characters
+                    String[] coordinates = line.split("\\s+");
                     // Check if coordinates array has the expected length before parsing
                     if (coordinates.length >= 4) {
                         try {
@@ -336,7 +334,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_SPOT_DIRECTION, spotDirection, 0);
         gl.glLightf(GL2.GL_LIGHT0, GL2.GL_SPOT_CUTOFF, spotCutoff);
 
-// Optional: Set attenuation and spotlight exponent for smoother lighting
+
         gl.glLightf(GL2.GL_LIGHT0, GL2.GL_SPOT_EXPONENT, 0.50f); // Focuses the spotlight
 
 
@@ -367,7 +365,6 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
 //        gl.glScalef(12.0f, 12.0f, 12.0f);
         gl.glNormal3f(0.0f, 1.0f, 0.0f);
 
-        // Render your object here
         for (int[] face : faces) {
             gl.glBegin(GL2.GL_POLYGON);
 //            gl.glColor3f(1f, 0f, 0f);
@@ -405,7 +402,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
 
         float halfWidth = 1f ;
         float halfDepth =  1f ;
-        float floorHeight = -0.11f; // Assuming a fixed height for the floor. Adjust as needed.
+        float floorHeight = -0.11f;
         gl.glNormal3f(0.0f, 1.0f, 0.0f);
         // Start drawing the floor quad
         gl.glBegin(GL2.GL_QUADS);
