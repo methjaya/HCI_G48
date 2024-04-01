@@ -1,15 +1,12 @@
-import javax.imageio.ImageIO;
+import components.JPlaceholderTextField;
+import components.NonSelectableComboBoxModel;
+import components.PlaceholderRenderer;
+import components.RoundButton;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import javax.swing.JTextField;
-
 
 public class RoomConfiguration {
 
@@ -31,6 +28,17 @@ public class RoomConfiguration {
         //BACK BUTTON
         RoundButton backButton = new RoundButton("assets/back.png",40,40);
         backButton.setBounds(15, 20, 40, 40);
+
+        //USER IMAGE
+        RoundButton userImage = new RoundButton("assets/user.png",35,35);
+        userImage.setBounds(870, 20, 40, 40);
+
+        //USER NAME LABEL
+        JLabel usernameLb;
+        usernameLb= new JLabel("John");
+        usernameLb.setBounds(920,25,50,30);
+        usernameLb.setFont(usernameLb.getFont().deriveFont(usernameLb.getFont().getSize() * 1.3f));
+        usernameLb.setForeground(Color.white);
 
         //TITLE
         JLabel title;
@@ -221,9 +229,11 @@ public class RoomConfiguration {
         });
 
 
-
+        //ADDING UI COMPONENTS
         panelTop.add(title);
         panelTop.add(backButton);
+        panelTop.add(userImage);
+        panelTop.add(usernameLb);
         centerPanel.add(goBtn);
         centerPanel.add(roomSizeLb);
         centerPanel.add(lenTf);
@@ -246,142 +256,5 @@ public class RoomConfiguration {
         f.setLayout(null);
         f.setVisible(true);
     }
-    public static class RoundButton extends JButton {
-        private BufferedImage image;
-        int width = 0;
-        int height = 0;
-
-        public RoundButton(String imagePath, int width, int height) {
-            this.height=height;
-            this.width=width;
-            try {
-                this.image = ImageIO.read(new File(imagePath));
-            } catch (IOException ex) {
-                System.out.println("Error loading image: " + ex.getMessage());
-            }
-            setOpaque(false);
-            setContentAreaFilled(false);
-            setFocusPainted(false);
-            setBorderPainted(false);
-            setPreferredSize(new Dimension(width, height)); // Set the preferred size
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g.create();
-            int imgWidth = image.getWidth();
-            int imgHeight = image.getHeight();
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            // Draw white rounded rectangle
-            g2d.setColor(Color.WHITE);
-            int arc = Math.min(width, height);
-            g2d.fill(new RoundRectangle2D.Double(0, 0, width - 1, height - 1, arc, arc));
-
-            // Draw image at the center
-            int x = (width - imgWidth) / 2;
-            int y = (height - imgHeight) / 2;
-            g2d.drawImage(image, x, y, this);
-
-            g2d.dispose();
-        }
-    }
-
-
-    public class JPlaceholderTextField extends JTextField implements FocusListener {
-        private String placeholder;
-        private int padding;
-        private boolean clicked;
-        private Font placeholderFont;
-
-        public JPlaceholderTextField(String placeholder, int padding) {
-            this.placeholder = placeholder;
-            this.padding = padding;
-            addFocusListener(this);
-            placeholderFont = getFont().deriveFont(Font.PLAIN); // Create a bold version of the current font
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-            Graphics2D g2d = (Graphics2D) g;
-            FontMetrics metrics = g2d.getFontMetrics(placeholderFont); // Use placeholderFont for measuring text
-            int textWidth = metrics.stringWidth(placeholder);
-            int textHeight = metrics.getHeight();
-
-            int x, y;
-
-            if (!clicked && getText().isEmpty()) {
-                // Draw the placeholder text at the start if not clicked and text field is empty
-                x = padding;
-            } else {
-                // Draw the placeholder text at the end if clicked or text field is not empty
-                x = getWidth() - textWidth - padding;
-            }
-
-            y = (getHeight() - textHeight) / 2 + metrics.getAscent();
-
-            // Enable anti-aliasing for smooth rendering
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2d.setColor(Color.GRAY);
-            g2d.setFont(placeholderFont); // Set the font to placeholderFont (bold)
-            g2d.drawString(placeholder, x, y);
-        }
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            clicked = true;
-            repaint();
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            clicked = false;
-            repaint();
-        }
-
-        @Override
-        public Insets getInsets() {
-            Insets insets = super.getInsets();
-            insets.left += padding;
-            insets.right += padding;
-            return insets;
-        }
-    }
-    // Custom renderer to render the placeholder text differently
-    static class PlaceholderRenderer extends DefaultListCellRenderer {
-        private String placeholder;
-
-        public PlaceholderRenderer(String placeholder) {
-            this.placeholder = placeholder;
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if (value != null && value.equals(placeholder)) {
-                setForeground(Color.GRAY);
-                setFont(getFont().deriveFont(Font.ITALIC));
-            }
-            return this;
-        }
-    }
-
-    // Custom ComboBoxModel to prevent selection of placeholder item
-    static class NonSelectableComboBoxModel<E> extends DefaultComboBoxModel<E> {
-        public NonSelectableComboBoxModel(E[] items) {
-            super(items);
-        }
-
-        @Override
-        public void setSelectedItem(Object anObject) {
-            if (!"  Select Floor Material".equals(anObject)) {
-                super.setSelectedItem(anObject);
-            }
-        }
-    }
-
 
 }
