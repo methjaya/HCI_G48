@@ -7,7 +7,8 @@ import java.awt.event.MouseListener;
 
 public class Main {
     public static void main(String[] args) {
-        new Activity();
+//        new Activity();
+        new RoomConfiguration();
     }
 
     public static class Activity{
@@ -15,6 +16,7 @@ public class Main {
         Activity(){
 
             f=new JFrame();
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setSize(900,600);
 
             //LEFT PANEL
@@ -76,7 +78,7 @@ public class Main {
                     f.dispose();
                     // Open the home page window
 //                    new Profile();
-                    new Room();
+//                    new Room();
                 }
             });
 
