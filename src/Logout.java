@@ -13,6 +13,7 @@ public class Logout {
     Logout() {
 
         f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(900, 600);
 
         //LEFT PANEL

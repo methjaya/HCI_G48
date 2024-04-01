@@ -12,6 +12,7 @@ public class Profile {
     Profile() {
 
         f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(700, 850);
 
         //PANEL
@@ -28,52 +29,52 @@ public class Profile {
 // Set the new font to the JLabel
         title.setFont(newFont);
         title.setForeground(new Color(27, 26, 85));
-        title.setBounds(80, 25, 250, 30); // Adjusted x-coordinate
+        title.setBounds(80, 25, 250, 30);
 
 //First Name
         final JTextField tfx = new JTextField();
-        tfx.setBounds(80, 115, 240, 40); // Adjusted x-coordinate
+        tfx.setBounds(80, 115, 240, 40);
         JLabel lb;
         lb = new JLabel("First Name");
-        lb.setBounds(80, 75, 100, 30); // Adjusted x-coordinate
+        lb.setBounds(80, 75, 100, 30);
 
 //Last Name
         final JTextField tfLn = new JTextField();
-        tfLn.setBounds(380, 115, 240, 40); // Adjusted x-coordinate
+        tfLn.setBounds(380, 115, 240, 40);
         JLabel lbLn;
         lbLn = new JLabel("Last Name");
-        lbLn.setBounds(380, 75, 100, 30); // Adjusted x-coordinate
+        lbLn.setBounds(380, 75, 100, 30);
 
 //Email
         final JTextField tf2 = new JTextField();
-        tf2.setBounds(80, 210, 540, 40); // Adjusted x-coordinate
+        tf2.setBounds(80, 210, 540, 40);
         JLabel lb2;
         lb2 = new JLabel("Email");
-        lb2.setBounds(80, 170, 100, 30); // Adjusted x-coordinate
+        lb2.setBounds(80, 170, 100, 30);
 
 //Address
         final JTextField tfAddress = new JTextField();
-        tfAddress.setBounds(80, 305, 540, 40); // Adjusted x-coordinate
+        tfAddress.setBounds(80, 305, 540, 40);
         JLabel lbAddress;
         lbAddress = new JLabel("Address");
-        lbAddress.setBounds(80, 265, 100, 30); // Adjusted x-coordinate
+        lbAddress.setBounds(80, 265, 100, 30);
 
 //Contact No
         final JTextField tfContactNo = new JTextField();
-        tfContactNo.setBounds(80, 400, 540, 40); // Adjusted x-coordinate
+        tfContactNo.setBounds(80, 400, 540, 40);
         JLabel lbContactNo;
         lbContactNo = new JLabel("Contact Number");
-        lbContactNo.setBounds(80, 360, 100, 30); // Adjusted x-coordinate
+        lbContactNo.setBounds(80, 360, 100, 30);
 
 //Districts
         JLabel lbDistricts;
         lbDistricts = new JLabel("District");
-        lbDistricts.setBounds(80, 455, 100, 30); // Adjusted x-coordinate
+        lbDistricts.setBounds(80, 455, 100, 30);
         JComboBox<String> comboBox = new JComboBox<>();
         comboBox.addItem("Open");
         comboBox.addItem("Save");
         comboBox.addItem("Exit");
-        comboBox.setBounds(80, 495, 240, 30); // Adjusted x-coordinate
+        comboBox.setBounds(80, 495, 240, 30);
         comboBox.setBackground(Color.white);
 
 // Add action listener to the JComboBox
@@ -87,12 +88,12 @@ public class Profile {
         //City
         JLabel lbCity;
         lbCity = new JLabel("City");
-        lbCity.setBounds(380, 455, 100, 30); // Adjusted x-coordinate
+        lbCity.setBounds(380, 455, 100, 30);
         JComboBox<String> comboBoxCity = new JComboBox<>();
         comboBoxCity.addItem("Open");
         comboBoxCity.addItem("Save");
         comboBoxCity.addItem("Exit");
-        comboBoxCity.setBounds(380, 495, 240, 30); // Adjusted x-coordinate
+        comboBoxCity.setBounds(380, 495, 240, 30);
         comboBoxCity.setBackground(Color.white);
 
 // Add action listener to the JComboBox
@@ -106,7 +107,7 @@ public class Profile {
 
 //Save Details
         JButton b = new JButton("Save Details");
-        b.setBounds(80, 545, 140, 40); // Adjusted x-coordinate
+        b.setBounds(80, 545, 140, 40);
         b.setBackground(new Color(54, 174, 124));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
@@ -122,21 +123,20 @@ public class Profile {
 
 //Old Password
         final JTextField tfPassword = new JTextField();
-        tfPassword.setBounds(80, 640, 240, 40); // Adjusted x-coordinate
+        tfPassword.setBounds(80, 640, 240, 40);
         JLabel lbPassword;
         lbPassword = new JLabel("Old Password");
-        lbPassword.setBounds(80, 600, 100, 30); // Adjusted x-coordinate
-
+        lbPassword.setBounds(80, 600, 100, 30);
         //New Password
         final JTextField tfNewPassword = new JTextField();
-        tfNewPassword.setBounds(380, 640, 240, 40); // Adjusted x-coordinate
+        tfNewPassword.setBounds(380, 640, 240, 40);
         JLabel lbNewPassword;
         lbNewPassword = new JLabel("New Password");
-        lbNewPassword.setBounds(380, 600, 100, 30); // Adjusted x-coordinate
+        lbNewPassword.setBounds(380, 600, 100, 30);
 
 //Save Password
         JButton btnSavePassword = new JButton("Save Password");
-        btnSavePassword.setBounds(80, 700, 140, 40); // Adjusted x-coordinate
+        btnSavePassword.setBounds(80, 700, 140, 40);
         btnSavePassword.setBackground(new Color(54, 174, 124));
         btnSavePassword.setForeground(Color.white);
         btnSavePassword.addActionListener(new ActionListener() {
