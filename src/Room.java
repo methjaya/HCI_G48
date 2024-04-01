@@ -21,7 +21,9 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
     private GLU glu = new GLU();
     private float posX = 0.0f;
     private float posY = 0.0f;
+
     private float posZ = -1.0f; // Initial Z position
+
 
     private float angleX = 0.0f;
     private float angleY = 0.0f;
@@ -170,7 +172,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
     private List<int[]> faces = new ArrayList<>();
 
     public Room() {
-        setTitle("OBJ Model Viewer");
+        setTitle("3D View");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
