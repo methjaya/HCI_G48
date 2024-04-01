@@ -9,7 +9,9 @@ public class Main {
     public static void main(String[] args) {
 //        new Activity();
         new RoomConfiguration();
+//        new Room();
     }
+
 
     public static class Activity{
         JFrame f;
@@ -78,7 +80,7 @@ public class Main {
                     f.dispose();
                     // Open the home page window
 //                    new Profile();
-//                    new Room();
+                    new Room();
                 }
             });
 
