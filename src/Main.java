@@ -8,9 +8,13 @@ import java.awt.event.MouseListener;
 public class Main {
     public static void main(String[] args) {
 //        new Activity();
-        new RoomConfiguration();
+//        new RoomConfiguration();
 //        new Room();
+//        new Dashboard();
+//        new FurnitureDesign();
+        new Profile();
     }
+
 
 
     public static class Activity{

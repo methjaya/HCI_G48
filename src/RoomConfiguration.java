@@ -10,7 +10,6 @@ import java.awt.event.*;
 
 public class RoomConfiguration {
 
-
     JFrame f;
 
     RoomConfiguration() {
@@ -37,7 +36,7 @@ public class RoomConfiguration {
         JLabel usernameLb;
         usernameLb= new JLabel("John");
         usernameLb.setBounds(920,25,50,30);
-        usernameLb.setFont(usernameLb.getFont().deriveFont(usernameLb.getFont().getSize() * 1.3f));
+        usernameLb.setFont(usernameLb.getFont().deriveFont(usernameLb.getFont().getSize() * 1.2f));
         usernameLb.setForeground(Color.white);
 
         //TITLE
