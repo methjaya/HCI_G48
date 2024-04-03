@@ -3,43 +3,43 @@ import components.NonSelectableComboBoxModel;
 import components.PlaceholderRenderer;
 import components.RoundButton;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RoomConfiguration {
 
     JFrame f;
-
+    Color selectedColor;
     RoomConfiguration() {
 
         f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(1000, 800);
 
-        //TOP PANEL
+        // TOP PANEL
         JPanel panelTop = new JPanel();
         panelTop.setBounds(0, 0, 1000, 80);
         panelTop.setBackground(new Color(54, 48, 98));
         panelTop.setLayout(null);
 
-        //BACK BUTTON
+        // BACK BUTTON
         RoundButton backButton = new RoundButton("assets/back.png",40,40);
         backButton.setBounds(15, 20, 40, 40);
 
-        //USER IMAGE
+        // USER IMAGE
         RoundButton userImage = new RoundButton("assets/user.png",35,35);
         userImage.setBounds(870, 20, 40, 40);
 
-        //USER NAME LABEL
+        // USER NAME LABEL
         JLabel usernameLb;
         usernameLb= new JLabel("John");
         usernameLb.setBounds(920,25,50,30);
         usernameLb.setFont(usernameLb.getFont().deriveFont(usernameLb.getFont().getSize() * 1.2f));
         usernameLb.setForeground(Color.white);
 
-        //TITLE
+        // TITLE
         JLabel title;
         title = new JLabel("ROOM CONFIGURATION");
         Font currentFont = title.getFont();
@@ -48,52 +48,56 @@ public class RoomConfiguration {
         title.setForeground(Color.white);
         title.setBounds(75, 20, 250, 40);
 
-        //BOTTOM PANEL
+        // BOTTOM PANEL
         JPanel panel = new JPanel();
         panel.setBackground(Color.white);
         panel.setBounds(0, 80, 1000, 720);
         panel.setLayout(null);
 
-        //CENTER PANEL
+        // CENTER PANEL
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(new Color(146, 144, 195,100));
         centerPanel.setBounds(300, 120, 400, 600);
         centerPanel.setLayout(null);
 
-
-        //ROOM SIZE LABEL
+        // ROOM SIZE LABEL
         JLabel roomSizeLb;
         roomSizeLb = new JLabel("ROOM SIZE");
         roomSizeLb.setFont(newFont);
         roomSizeLb.setForeground(new Color(27, 26, 85));
         roomSizeLb.setBounds(50, 25, 200, 40);
-        //TEXT FIELD LENGTH
+
+        // TEXT FIELD LENGTH
         JPlaceholderTextField lenTf = new JPlaceholderTextField("Length", 10);
         lenTf.setBounds(50, 70, 300, 30);
         lenTf.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        //TEXT FIELD WIDTH
+
+        // TEXT FIELD WIDTH
         JPlaceholderTextField widthTf = new JPlaceholderTextField("Width", 10);
         widthTf.setBounds(50, 110, 300, 30);
         widthTf.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        //TEXT FIELD HEIGHT
+
+        // TEXT FIELD HEIGHT
         JPlaceholderTextField heightTf = new JPlaceholderTextField("Height", 10);
         heightTf.setBounds(50, 150, 300, 30);
         heightTf.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
-        //ROOM SHAPE LABEL
+        // ROOM SHAPE LABEL
         JLabel roomShapeLb;
         roomShapeLb = new JLabel("ROOM SHAPE");
         roomShapeLb.setFont(newFont);
         roomShapeLb.setForeground(new Color(27, 26, 85));
         roomShapeLb.setBounds(50, 190, 200, 40);
-        //RADIO BUTTON SQUARE
+
+        // RADIO BUTTON SQUARE
         JRadioButton sqrRadioBtn = new JRadioButton("    Square");
         sqrRadioBtn.setBounds(50, 235, 300, 30);
         sqrRadioBtn.setFocusPainted(false);
         sqrRadioBtn.setForeground(Color.gray);
         sqrRadioBtn.setBackground(Color.white);
         sqrRadioBtn.setFont(sqrRadioBtn.getFont().deriveFont(Font.PLAIN));
-        //RADIO BUTTON RECTANGULAR
+
+        // RADIO BUTTON RECTANGULAR
         JRadioButton rectRadioBtn = new JRadioButton("    Rectangular");
         rectRadioBtn.setBounds(50, 275, 300, 30);
         rectRadioBtn.setFocusPainted(false);
@@ -101,7 +105,11 @@ public class RoomConfiguration {
         rectRadioBtn.setBackground(Color.white);
         rectRadioBtn.setFont(rectRadioBtn.getFont().deriveFont(Font.PLAIN));
 
-        //WALL COLOR LABEL
+        ButtonGroup shapeGroup = new ButtonGroup();
+        shapeGroup.add(sqrRadioBtn);
+        shapeGroup.add(rectRadioBtn);
+
+        // WALL COLOR LABEL
         JLabel wallColorLb;
         wallColorLb = new JLabel("WALL COLOR");
         wallColorLb.setFont(newFont);
@@ -114,18 +122,16 @@ public class RoomConfiguration {
         colorPickerButton.setForeground(Color.gray);
         colorPickerButton.setFont(colorPickerButton.getFont().deriveFont(Font.PLAIN));
         colorPickerButton.setFocusPainted(false);
-        //COLOR PANEL
+
         JPanel colorDisplayPanel = new JPanel();
         colorDisplayPanel.setBounds(320,360,30,30);
         colorDisplayPanel.setBackground(Color.white);
+
         colorPickerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Show the color chooser dialog when the button is clicked
-                Color selectedColor = JColorChooser.showDialog(f, "Choose a Color", Color.WHITE);
+                selectedColor = JColorChooser.showDialog(f, "Choose a Color", Color.WHITE);
                 if (selectedColor != null) {
-                    // Perform actions with the selected color (e.g., set background color of a component)
-                    System.out.println(selectedColor);
                     colorDisplayPanel.setBackground(selectedColor);
                 }
             }
@@ -140,7 +146,7 @@ public class RoomConfiguration {
 
         JPanel materialColorDisplayPanel = new JPanel();
         JButton materialColorPickerButton = new JButton("Pick The Floor Color");
-        String[] options = {"  Select Floor Material","  Option 1", "  Option 2", "  Option 3"};
+        String[] options = {"  Select Floor Material","  Dark Wooden Floor", "  Light Wooden Floor"};
         JComboBox<String> floorMaterialsMenu = new JComboBox<>(new NonSelectableComboBoxModel<>(options));
         floorMaterialsMenu.setRenderer(new PlaceholderRenderer("  Select Floor Material"));
         floorMaterialsMenu.setBounds(50, 450, 200, 30);
@@ -204,11 +210,6 @@ public class RoomConfiguration {
             }
         });
 
-
-
-
-
-        //GO BUTTON
         JButton goBtn = new JButton("GO >");
         goBtn.setBounds(165, 550, 70, 30);
         goBtn.setBackground(new Color(54, 48, 98));
@@ -216,19 +217,13 @@ public class RoomConfiguration {
         goBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
+                if (validateFields(lenTf.getText(), widthTf.getText(), heightTf.getText(), sqrRadioBtn.isSelected() || rectRadioBtn.isSelected())) {
                     f.dispose();
-                    // Open the home page window
                     new Profile();
-                } catch (Exception err) {
-//                        output.setText("Error");
                 }
-
             }
         });
 
-
-        //ADDING UI COMPONENTS
         panelTop.add(title);
         panelTop.add(backButton);
         panelTop.add(userImage);
@@ -245,10 +240,10 @@ public class RoomConfiguration {
         centerPanel.add(colorPickerButton);
         centerPanel.add(colorDisplayPanel);
         centerPanel.add(floorMaterialLb);
+        centerPanel.add(materialColorDisplayPanel);
+        centerPanel.add(materialColorPickerButton);
         centerPanel.add(floorMaterialsMenu);
         centerPanel.add(orLb);
-        centerPanel.add(materialColorPickerButton);
-        centerPanel.add(materialColorDisplayPanel);
         f.add(panelTop);
         f.add(centerPanel);
         f.add(panel);
@@ -256,4 +251,31 @@ public class RoomConfiguration {
         f.setVisible(true);
     }
 
+    private boolean validateFields(String length, String width, String height, boolean isShapeSelected) {
+        if (length.isEmpty() || width.isEmpty() || height.isEmpty()) {
+            JOptionPane.showMessageDialog(f, "Please fill in all room size fields");
+            return false;
+        }
+
+        try {
+            double len = Double.parseDouble(length);
+            double wid = Double.parseDouble(width);
+            double hei = Double.parseDouble(height);
+
+            if (len <= 0 || wid <= 0 || hei <= 0) {
+                JOptionPane.showMessageDialog(f, "Room dimensions should be positive numbers");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(f, "Room dimensions should be numerical");
+            return false;
+        }
+
+        if (!isShapeSelected) {
+            JOptionPane.showMessageDialog(f, "Please select room shape");
+            return false;
+        }
+
+        return true;
+    }
 }

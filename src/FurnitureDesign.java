@@ -254,6 +254,4 @@ public class FurnitureDesign {
         f.setLayout(null);
         f.setVisible(true);
     }
-
-
 }
