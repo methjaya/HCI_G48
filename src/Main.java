@@ -8,15 +8,9 @@ import java.awt.event.MouseListener;
 public class Main {
     public static void main(String[] args) {
 //        new Activity();
-//        new RoomConfiguration();
-//        new Room();
-//        new Dashboard();
+        new ModelSave();
 //        new FurnitureDesign();
-//        new Profile();
-        new ColorPalette();
     }
-
-
 
     public static class Activity{
         JFrame f;
@@ -25,6 +19,7 @@ public class Main {
             f=new JFrame();
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setSize(900,600);
+            f.setLocationRelativeTo(null);
 
             //LEFT PANEL
             JPanel panelLeft = new JPanel();
@@ -81,14 +76,10 @@ public class Main {
             b.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Close the current window
                     f.dispose();
-                    // Open the home page window
-//                    new Profile();
-                    new Room();
+                    new Dashboard();
                 }
             });
-
 
             panel.add(title);
             panel.add(lb);
@@ -104,88 +95,3 @@ public class Main {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    public static class Activity{
-//        JFrame f;
-//        Activity(){
-//            f=new JFrame();
-//            f.setSize(600,600);
-//
-//            //TextField 1
-//            final JTextField  tf = new JTextField();
-//            tf.setBounds(100,100,150,20);
-//
-//            //TextField 2
-//            final JTextField  tf2 = new JTextField();
-//            tf.setBounds(80,80,150,20);
-//
-//            //Button 1
-//            JButton b = new JButton("Click Here");
-//            b.setBounds(50,100,50,25);
-//            b.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    tf.setText("Welcome to the PUSL3122 Module");
-//                }
-//            });
-//
-//            //Button 2
-//            JButton b2 = new JButton("Click Here");
-//            b2.setBounds(200,100,50,25);
-//            b2.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    tf.setText("Welcome to the PUSL3122 Module");
-//                }
-//            });
-//
-//            //Label 1
-//            JLabel lb;
-//            lb= new JLabel("First lab session");
-//            lb.setBounds(100,150,100,30);
-//
-//            f.addMouseListener(new MouseListener() {
-//                public void mousePressed(MouseEvent me) { }
-//                public void mouseReleased(MouseEvent me) { }
-//                public void mouseEntered(MouseEvent me) { }
-//                public void mouseExited(MouseEvent me) { }
-//                public void mouseClicked(MouseEvent me) {
-//                    int x = me.getX();
-//                    int y = me.getY();
-//                    tf.setText("X:" + x + " Y:" + y);
-//                }
-//            });
-//            f.add(lb);
-//            f.add(tf);
-//            f.add(tf2);
-//            f.add(b);
-//            f.add(b2);
-//            f.setLayout(null);
-//            f.setVisible(true);
-//
-//
-//
-//        }
-//    }
-//}

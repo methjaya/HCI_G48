@@ -18,6 +18,7 @@ public class FurnitureDesign {
         f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(1000, 720);
+        f.setLocationRelativeTo(null);
 
         //TOP PANEL
         JPanel panelTop = new JPanel();
@@ -32,6 +33,13 @@ public class FurnitureDesign {
         //USER IMAGE
         RoundButton userImage = new RoundButton("assets/user.png",35,35);
         userImage.setBounds(870, 20, 40, 40);
+        userImage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new Profile();
+            }
+        });
 
         //USER NAME LABEL
         JLabel usernameLb;

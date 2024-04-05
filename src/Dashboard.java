@@ -20,14 +20,18 @@ public class Dashboard {
         panelTop.setBounds(0, 0, 1000, 80);
         panelTop.setBackground(new Color(54, 48, 98));
         panelTop.setLayout(null);
-
-        //BACK BUTTON
-        RoundButton backButton = new RoundButton("assets/back.png",40,40);
-        backButton.setBounds(15, 20, 40, 40);
+        f.setLocationRelativeTo(null);
 
         //USER IMAGE
         RoundButton userImage = new RoundButton("assets/user.png",35,35);
         userImage.setBounds(870, 20, 40, 40);
+        userImage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new Profile();
+            }
+        });
 
         //USER NAME LABEL
         JLabel usernameLb;
@@ -67,13 +71,8 @@ public class Dashboard {
         roomConfigBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
                     f.dispose();
-                    // Open the home page window
-                    new Profile();
-                } catch (Exception err) {
-                    //output.setText("Error");
-                }
+                    new RoomConfiguration();
 
             }
         });
@@ -127,14 +126,8 @@ public class Dashboard {
         browseItemsBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
                     f.dispose();
-                    // Open the home page window
-                    new Profile();
-                } catch (Exception err) {
-                    //output.setText("Error");
-                }
-
+                    new RoomConfiguration();
             }
         });
 
@@ -147,14 +140,8 @@ public class Dashboard {
         clrPaletteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
                     f.dispose();
-                    // Open the home page window
-                    new Profile();
-                } catch (Exception err) {
-                    //output.setText("Error");
-                }
-
+                    new ColorPalette();
             }
         });
 
@@ -167,13 +154,8 @@ public class Dashboard {
         addYourOwnBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
                     f.dispose();
-                    // Open the home page window
                     new Profile();
-                } catch (Exception err) {
-                    //output.setText("Error");
-                }
 
             }
         });
@@ -181,7 +163,6 @@ public class Dashboard {
 
         //ADDING UI COMPONENTS
         panelTop.add(title);
-        panelTop.add(backButton);
         panelTop.add(userImage);
         panelTop.add(usernameLb);
         panel.add(roomConfigBtn);
