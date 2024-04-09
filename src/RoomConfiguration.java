@@ -30,6 +30,13 @@ public class RoomConfiguration {
         // BACK BUTTON
         RoundButton backButton = new RoundButton("assets/back.png",40,40);
         backButton.setBounds(15, 20, 40, 40);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new Dashboard();
+            }
+        });
 
         // USER IMAGE
         RoundButton userImage = new RoundButton("assets/user.png",35,35);

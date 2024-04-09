@@ -54,6 +54,13 @@ public class FurnitureDesign {
         //BACK BUTTON
         RoundButton backButton = new RoundButton("assets/back.png",40,40);
         backButton.setBounds(15, 20, 40, 40);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new Dashboard();
+            }
+        });
 
         //USER IMAGE
         RoundButton userImage = new RoundButton("assets/user.png",35,35);
@@ -317,10 +324,6 @@ public class FurnitureDesign {
             }
         });
 
-        if(onlyAddItem){
-            Btn3D.setVisible(false);
-            Btn2D.setVisible(false);
-        }
 
         //3D DESIGN Button
         JButton addItemBtn = new JButton("Add Item");
@@ -330,9 +333,20 @@ public class FurnitureDesign {
         addItemBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                        f.dispose();
+                models.add(loadObjModel(selectedItem.getMdlPath(),selectedItem.getName(),selectedItem.getColors().get(materialMenu.getSelectedIndex())));
+                f.dispose();
             }
         });
+
+        if(onlyAddItem){
+            Btn3D.setVisible(false);
+            Btn2D.setVisible(false);
+            addItemBtn.setVisible(true);
+        }else{
+            addItemBtn.setVisible(false);
+            Btn3D.setVisible(true);
+            Btn2D.setVisible(true);
+        }
 
         //ADDING UI COMPONENTS
         panelTop.add(title);

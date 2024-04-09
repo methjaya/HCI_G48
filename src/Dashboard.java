@@ -89,7 +89,7 @@ public class Dashboard {
                 try {
                     f.dispose();
                     // Open the home page window
-                    new Profile();
+                    new BrowseCustomerDesign();
                 } catch (Exception err) {
                     //output.setText("Error");
                 }
@@ -109,7 +109,7 @@ public class Dashboard {
                 try {
                     f.dispose();
                     // Open the home page window
-                    new Profile();
+                    new Instructions();
                 } catch (Exception err) {
                     //output.setText("Error");
                 }
@@ -127,7 +127,7 @@ public class Dashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                     f.dispose();
-                    new RoomConfiguration();
+                    new BrowseItems();
             }
         });
 
@@ -146,7 +146,7 @@ public class Dashboard {
         });
 
         //INSTRUCTIONS BUTTON
-        JButton addYourOwnBtn = new JButton("Add Your Own");
+        JButton addYourOwnBtn = new JButton("Add Furniture");
         addYourOwnBtn.setBounds(585, 410, 200, 45);
         addYourOwnBtn.setBackground(new Color(54, 48, 98));
         addYourOwnBtn.setForeground(Color.white);
@@ -155,7 +155,7 @@ public class Dashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                     f.dispose();
-                    new Profile();
+                    new AddFurniture();
 
             }
         });

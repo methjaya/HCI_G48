@@ -1,3 +1,5 @@
+package utils;
+
 public class Face {
     int[] vertexIndices;
     int[] textureCoordIndices;
