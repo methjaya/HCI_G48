@@ -1,3 +1,5 @@
+import utils.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +10,10 @@ import java.awt.event.MouseListener;
 public class Main {
     public static void main(String[] args) {
 //        new Activity();
-        new ModelSave();
-//        new FurnitureDesign();
+//        new ModelSave();
+        new FurnitureDesign(false);
+//        new Room();
+
     }
 
     public static class Activity{
