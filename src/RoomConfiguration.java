@@ -17,7 +17,7 @@ public class RoomConfiguration {
     RoomConfiguration() {
 
         f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(1000, 800);
         f.setLocationRelativeTo(null);
 

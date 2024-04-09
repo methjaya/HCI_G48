@@ -137,7 +137,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         f.setTitle("3D Room");
         f.setSize(1100, 720);
         f.setLocationRelativeTo(null);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLayout(null); // Using null layout for the frame
 
         //TOP PANEL
@@ -400,7 +400,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
                 JFrame fullScreenFrame = new JFrame("3D Space Full Screen");
                 fullScreenFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full-screen size
                 fullScreenFrame.setLocationRelativeTo(null);
-                fullScreenFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 GLProfile profile = GLProfile.get(GLProfile.GL2);
                 GLCapabilities capabilities = new GLCapabilities(profile);
@@ -511,7 +511,18 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         });
 
 
+        JButton saveDesignBtn = new JButton("Save Design");
+        saveDesignBtn.setBounds(170, 560, 110, 30); // Adjust position and size as needed
+        saveDesignBtn.setBackground(new Color(54, 48, 98));
+        saveDesignBtn.setForeground(Color.white);
+        saveDesignBtn.setFocusPainted(false);
 
+        saveDesignBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ModelSave();
+            }
+        });
 
         // RIGHT PANEL
         JPanel rightPanel = new JPanel(new BorderLayout());
@@ -583,6 +594,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         leftPanel.add(camBKPanel);
         leftPanel.add(camBKTextLb);
         leftPanel.add(fullScreenBtn);
+        leftPanel.add(saveDesignBtn);
 
 
         panelTop.add(title);

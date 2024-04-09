@@ -13,7 +13,7 @@ public class Logout {
     Logout() {
 
         f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(900, 600);
         f.setLocationRelativeTo(null);
 

@@ -22,7 +22,7 @@ class Room2D extends JFrame implements GLEventListener {
         f.setTitle("2D Room");
         f.setSize(1100, 720);
         f.setLocationRelativeTo(null);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLayout(null);
 
         //TOP PANEL
@@ -95,6 +95,20 @@ class Room2D extends JFrame implements GLEventListener {
             public void actionPerformed(ActionEvent e) {
                 // Set the selectedItem to the one selected in the dropdown
                 selectedItem = (FurnitureItem) furnitureItemsMenu.getSelectedItem();
+            }
+        });
+
+        //3D BUTTON
+        JButton Btn3D = new JButton("3D >");
+        Btn3D.setBounds(25, 110, 80, 25);
+        Btn3D.setBackground(new Color(54, 48, 98));
+        Btn3D.setForeground(Color.white);
+        Btn3D.setFont(Btn3D.getFont().deriveFont(Btn3D.getFont().getSize() * 1.3f));
+        Btn3D.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new Room();
             }
         });
 
@@ -326,6 +340,7 @@ class Room2D extends JFrame implements GLEventListener {
         leftPanel.add(addTablePanel);
         leftPanel.add(addWardrobeTextLb);
         leftPanel.add(addWardrobePanel);
+        leftPanel.add(Btn3D);
 
 
         panelTop.add(title);

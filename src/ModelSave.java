@@ -12,7 +12,7 @@ public class ModelSave {
     ModelSave() {
 
         f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(1000, 800);
         f.setLocationRelativeTo(null);
 
@@ -115,7 +115,7 @@ public class ModelSave {
         goBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(f, "Model saved successfully!");
             }
         });
 

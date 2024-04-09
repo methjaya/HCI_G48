@@ -12,7 +12,7 @@ public class BrowseItems {
 
     BrowseItems() {
         f = new JFrame("Browse Items");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(1000, 720);
         f.setLocationRelativeTo(null);
         f.setBackground(Color.WHITE);

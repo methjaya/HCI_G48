@@ -99,7 +99,7 @@ public class AddFurniture {
         typeLb.setForeground(new Color(27, 26, 85));
         typeLb.setBounds(50, 110, 200, 40);
 
-        String[] options = {"  Select Floor Material", "  Chair", "  Table", "  Wardrobe"};
+        String[] options = {"  Select Furniture Type", "  Chair", "  Table", "  Wardrobe"};
         JComboBox<String> typeMenu = new JComboBox<>(new NonSelectableComboBoxModel<>(options));
         typeMenu.setRenderer(new PlaceholderRenderer("  Select Floor Material"));
         typeMenu.setBounds(50, 150, 300, 30);
@@ -297,7 +297,7 @@ public class AddFurniture {
         goBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(f, "Furniture item added successfully!");
             }
         });
 

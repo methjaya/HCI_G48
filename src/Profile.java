@@ -21,7 +21,7 @@ public class Profile {
     Profile() {
 
         f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(1000, 750);
         f.setLocationRelativeTo(null);
 

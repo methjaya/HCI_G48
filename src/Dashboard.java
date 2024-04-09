@@ -12,7 +12,7 @@ public class Dashboard {
     Dashboard() {
 
         f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(1000, 700);
 
         //TOP PANEL
@@ -161,6 +161,22 @@ public class Dashboard {
         });
 
 
+        //LOGOUT BUTTON
+        JButton logOutBtn = new JButton("Logout");
+        logOutBtn.setBounds(450, 500, 100, 40);
+        logOutBtn.setBackground(new Color(54, 48, 98));
+        logOutBtn.setForeground(Color.white);
+        logOutBtn.setFont(logOutBtn.getFont().deriveFont(logOutBtn.getFont().getSize() * 1.3f));
+        logOutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                new AddFurniture();
+
+            }
+        });
+
+
         //ADDING UI COMPONENTS
         panelTop.add(title);
         panelTop.add(userImage);
@@ -171,6 +187,7 @@ public class Dashboard {
         panel.add(browseItemsBtn);
         panel.add(clrPaletteBtn);
         panel.add(addYourOwnBtn);
+        panel.add(logOutBtn);
 
 
         f.add(panelTop);
