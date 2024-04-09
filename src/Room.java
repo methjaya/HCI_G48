@@ -5,6 +5,7 @@ import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureIO;
 import components.RoundButton;
 import utils.Model;
+import utils.ModelManager;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static utils.ModelManager.models;
-import static utils.ModelManager.selectedModelIndex;
+import static utils.ModelManager.*;
 
 
 public class Room extends JFrame implements GLEventListener, KeyListener {
@@ -623,7 +623,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
 
         try {
             // Load the texture for the floor
-            floorTexture = TextureIO.newTexture(new File("resources/dark floor.jpg"), true);
+            floorTexture = TextureIO.newTexture(new File(ModelManager.floorMaterialPath), true);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -647,7 +647,7 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         // Set up the camera (view transformation)
         setupCamera(gl);
 
-        float constantAttenuation = 1.0f; // Constant factor (usually 1)
+        float constantAttenuation = 1.0f; // Constant factor
         float linearAttenuation = 0.05f; // Linear factor
         float quadraticAttenuation = 1.01f; // Quadratic factor
 
@@ -670,15 +670,9 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         gl.glEnable(GL2.GL_COLOR_MATERIAL);
         gl.glColorMaterial(GL2.GL_FRONT, GL2.GL_AMBIENT_AND_DIFFUSE);
 
-//        gl.glColor3f(0.5f, 0.5f, 0.5f);
         // Render the floor without object transformations
         drawFloor(gl);
 
-//        float red = 218 / 255.0f;
-//        float green = 160 / 255.0f;
-//        float blue = 109 / 255.0f;
-//
-//        gl.glColor3f(red, green, blue);
 
         // Push the current matrix onto the stack
         gl.glPushMatrix();
@@ -719,28 +713,9 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
             gl.glPopMatrix();
         }
 
-//        for (int[] face : faces) {
-//            gl.glBegin(GL2.GL_POLYGON);
-////            gl.glColor3f(1f, 0f, 0f);
-//            for (int vertexIndex : face) {
-//                float[] v = vertices.get(vertexIndex - 1);
-//                gl.glVertex3f(v[0], v[1], v[2]);
-//            }
-//            gl.glEnd();
-//        }
-
         // Pop the matrix off the stack
         gl.glPopMatrix();
     }
-
-//    private void setupCamera(GL2 gl) {
-//        glu.gluLookAt(camPosX, camPosY, camPosZ,
-//                camLookX, camLookY, camLookZ,
-//                camUpX, camUpY, camUpZ);
-//    }
-
-
-
 
     private void drawFloor(GL2 gl) {
         if (floorTexture != null) {
@@ -754,9 +729,6 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         gl.glColor3f(1f, 1f, 1f);
 
 
-        float halfWidth = 1f ;
-        float halfDepth =  1f ;
-        float floorHeight = -0.11f;
         gl.glNormal3f(0.0f, 1.0f, 0.0f);
         // Start drawing the floor quad
         gl.glBegin(GL2.GL_QUADS);

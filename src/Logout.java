@@ -23,6 +23,12 @@ public class Logout {
         panelLeft.setBackground(new Color(54, 48, 98));
         panelLeft.setLayout(null);
 
+        // Load and display image
+        ImageIcon imageIconLogo = new ImageIcon("assets/logo.png"); // Modify with your image path
+        JLabel imageLabelLogo = new JLabel(imageIconLogo);
+        imageLabelLogo.setBounds(70, 140, imageIconLogo.getIconWidth(), imageIconLogo.getIconHeight());
+        panelLeft.add(imageLabelLogo);
+
         //Right PANEL
         JPanel panel = new JPanel();
         panel.setBackground(Color.white);

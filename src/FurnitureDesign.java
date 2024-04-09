@@ -75,12 +75,12 @@ public class FurnitureDesign {
 
         //TITLE
         JLabel title;
-        title = new JLabel("ROOM DESIGN CREATION");
+        title = new JLabel("FURNITURE DESIGN CREATION");
         Font currentFont = title.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.5f); // increase by 1.5 times
         title.setFont(newFont);
         title.setForeground(Color.white);
-        title.setBounds(75, 20, 250, 40);
+        title.setBounds(75, 20, 450, 40);
 
 
         //LEFT PANEL
@@ -317,6 +317,22 @@ public class FurnitureDesign {
             }
         });
 
+        if(onlyAddItem){
+            Btn3D.setVisible(false);
+            Btn2D.setVisible(false);
+        }
+
+        //3D DESIGN Button
+        JButton addItemBtn = new JButton("Add Item");
+        addItemBtn.setBounds(430,520,140,40);
+        addItemBtn.setBackground(new Color(51,58,115));
+        addItemBtn.setForeground(Color.white);
+        addItemBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                        f.dispose();
+            }
+        });
 
         //ADDING UI COMPONENTS
         panelTop.add(title);
@@ -339,6 +355,7 @@ public class FurnitureDesign {
         rightInnerPanel.add(imgLb2);
         panel.add(Btn2D);
         panel.add(Btn3D);
+        panel.add(addItemBtn);
 
 
         f.add(panelTop);
@@ -402,7 +419,11 @@ public class FurnitureDesign {
     }
 
     private boolean validateSelections() {
-        // Check if an item is selected
+        if (selectedItem == null) {
+            JOptionPane.showMessageDialog(f, "Please select a furniture item.", "Selection Required", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
         if (selectedItem.getColors() == null) {
             JOptionPane.showMessageDialog(f, "Please select a furniture item.", "Selection Required", JOptionPane.WARNING_MESSAGE);
             return false;
