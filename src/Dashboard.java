@@ -171,7 +171,7 @@ public class Dashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.dispose();
-                new AddFurniture();
+                new Logout();
 
             }
         });

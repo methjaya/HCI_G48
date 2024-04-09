@@ -91,8 +91,8 @@ public class Logout {
             public void actionPerformed(ActionEvent e) {
                 try {
                     f.dispose();
-                    // Open the home page window
-                    new Profile();
+
+                    new Main.Login();
                 } catch (Exception err) {
 //                        output.setText("Error");
                 }
@@ -109,7 +109,9 @@ public class Logout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    f.dispose();
 
+                    new Dashboard();
                 } catch (Exception err) {
 //                        output.setText("Error");
                 }

@@ -6,14 +6,13 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-//        new Activity();
-        new Room();
+        new Login();
     }
 
-    public static class Activity {
+    public static class Login {
         JFrame f;
 
-        Activity() {
+        Login() {
             f = new JFrame();
             f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             f.setSize(900, 600);
