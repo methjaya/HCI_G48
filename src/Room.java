@@ -390,32 +390,117 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         fullScreenBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame spaceFrame = new JFrame("3D Space");
-                spaceFrame.setSize(800, 600);
-                spaceFrame.setLocationRelativeTo(null);
-                spaceFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                JFrame fullScreenFrame = new JFrame("3D Space Full Screen");
+                fullScreenFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full-screen size
+                fullScreenFrame.setLocationRelativeTo(null);
+                fullScreenFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 GLProfile profile = GLProfile.get(GLProfile.GL2);
                 GLCapabilities capabilities = new GLCapabilities(profile);
                 capabilities.setSampleBuffers(true);
                 capabilities.setNumSamples(8);
 
-                GLCanvas newCanvas = new GLCanvas(capabilities);
+                GLCanvas fullScreenCanvas = new GLCanvas(capabilities);
+                fullScreenCanvas.addGLEventListener(Room.this);
+                fullScreenCanvas.addKeyListener(Room.this); // Reuse Room's KeyListener
+                fullScreenCanvas.addMouseMotionListener(new MouseMotionAdapter() {
+                    private int lastX, lastY;
 
-                // Assuming Room.this refers to the current Room instance which implements GLEventListener
-                newCanvas.addGLEventListener(Room.this);
-                newCanvas.addKeyListener(Room.this); // Assuming Room class also implements KeyListener
+                    @Override
+                    public void mouseMoved(MouseEvent e) {
+                        lastX = e.getX();
+                        lastY = e.getY();
+                    }
 
-                // Focus must be requestable for key events to be captured
-                newCanvas.setFocusable(true);
-                newCanvas.requestFocus();
+                    @Override
+                    public void mouseDragged(MouseEvent e) {
+                        int dx = e.getX() - lastX;
+                        int dy = e.getY() - lastY;
 
-                spaceFrame.getContentPane().add(newCanvas, BorderLayout.CENTER);
-                spaceFrame.setVisible(true);
+                        // Update camera look direction based on mouse drag
+                        updateCameraLookDirection(dx, dy);
 
-                // Important: Repaint the canvas to see the content
-                newCanvas.display();
+                        lastX = e.getX();
+                        lastY = e.getY();
+
+                        fullScreenCanvas.display();
+                    }
+                });
+
+                fullScreenCanvas.addKeyListener(new KeyAdapter() {
+                    public void keyPressed(KeyEvent e) {
+                        if (selectedModelIndex < 0 || selectedModelIndex >= models.size()) return;
+                        Model selectedModel = models.get(selectedModelIndex);
+                        switch (e.getKeyCode()) {
+                            case KeyEvent.VK_W:
+                                selectedModel.translate(0, 0, -2f); // Z-axis movement
+                                break;
+                            case KeyEvent.VK_S:
+                                selectedModel.translate(0, 0, 2f); // Z-axis movement
+                                break;
+                            case KeyEvent.VK_A:
+                                selectedModel.translate(-2f, 0, 0); // X-axis movement
+                                break;
+                            case KeyEvent.VK_D:
+                                selectedModel.translate(2f, 0, 0); // X-axis movement
+                                break;
+                            case KeyEvent.VK_1:
+                                selectedModel.translate(0, 1f, 0); // Y-axis movement (up/down)
+                                break;
+                            case KeyEvent.VK_2:
+                                selectedModel.translate(0, -1f, 0); // Y-axis movement (up/down)
+                                break;
+                            case KeyEvent.VK_Z:
+                                selectedModel.scale(1.1f); // Increase model size
+                                break;
+                            case KeyEvent.VK_X:
+                                selectedModel.scale(0.9f); // Decrease model size
+                                break;
+//            case KeyEvent.VK_UP:
+//                selectedModel.rotate(-5.0f, 0, 0); // Rotate model up
+//                break;
+//            case KeyEvent.VK_DOWN:
+//                selectedModel.rotate(5.0f, 0, 0); // Rotate model down
+//                break;
+                            case KeyEvent.VK_Q:
+                                selectedModel.rotate(0, -5.0f, 0); // Rotate model left
+                                break;
+                            case KeyEvent.VK_E:
+                                selectedModel.rotate(0, 5.0f, 0); // Rotate model right
+                                break;
+                            case KeyEvent.VK_UP: // Move camera forward
+                                camPosZ -= 0.1f;
+                                break;
+                            case KeyEvent.VK_DOWN: // Move camera backward
+                                camPosZ += 0.1f;
+                                break;
+                            case KeyEvent.VK_LEFT: // Move camera left
+                                camPosX -= 0.5f;
+                                break;
+                            case KeyEvent.VK_RIGHT: // Move camera right
+                                camPosX += 0.5f;
+                                break;
+                            case KeyEvent.VK_CONTROL: // Move camera up
+                                camPosY += 0.5f;
+                                break;
+                            case KeyEvent.VK_SHIFT: // Move camera down
+                                camPosY -= 0.5f;
+                                break;
+                        }
+                        fullScreenCanvas.repaint();
+                    }
+                });
+
+                // Ensure the canvas is focusable to receive key events
+                fullScreenCanvas.setFocusable(true);
+
+                fullScreenFrame.getContentPane().add(fullScreenCanvas, BorderLayout.CENTER);
+                fullScreenFrame.setVisible(true);
+
+                // Request focus for the canvas to receive key and mouse events
+                SwingUtilities.invokeLater(() -> fullScreenCanvas.requestFocusInWindow());
             }
+
         });
 
 
@@ -618,8 +703,6 @@ public class Room extends JFrame implements GLEventListener, KeyListener {
         gl.glEnable(GL2.GL_LIGHTING);
         // Enable a light source
         gl.glEnable(GL2.GL_LIGHT0);
-
-
 
         try {
             // Load the texture for the floor
