@@ -12,7 +12,9 @@ public class Main {
 //        new Room();
 //        new RoomConfiguration();
 //        new BrowseItems();
-        new Instructions();
+//        new Instructions();
+//        new AddFurniture();
+        new BrowseCustomerDesign();
     }
 
     public static class Activity{
